@@ -237,34 +237,41 @@ html.fp-enabled,
 }
 
 /* Custon CSS */
+#fullpage{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 #section0{
     background-image: url(https://media.timeout.com/images/101668463/image.jpg);
-    opacity:.90;
+    opacity:.95;
 }
 #section0 h1{
     text-align: center;
     padding: 5px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 110px;
-    color:#ABD0E8;
+    font-size: 100px;
+    color:#637897;
+    font-weight: bold;
 }
 
 .btn{
+    margin-top: 75px;
+    margin-right: 40px;
+    margin-left: 40px;
     padding: .93em 1.87em;
     background: #d1b28f;
+    border-color: #d1b28f;
     border-radius: 5px;
     color: #4c351b;
     font-weight: bold;
 }
 
-#data{
-    background:#d1b28f;
-    margin-left: 185px;
+.btn:hover{
+    background: #4c351b;
+    color:#d1b28f;
+    border-color:#4c351b;
 }
 
-#article{
-    background:#d1b28f;
-    margin-left:150px;
+.btn:click{
+    background: none;
 }
 
 .plotly1 {
