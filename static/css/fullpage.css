@@ -242,26 +242,14 @@ html.fp-enabled,
     opacity:.90;
 }
 #section0 h1{
-    margin-top:200px;
-    margin-left: 390px;
-    margin-right: 390px;
     text-align: center;
     padding: 5px;
-    font-size: 100px;
-    color:#756558;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 110px;
+    color:#ABD0E8;
 }
 
-ul {
-    list-style:none;
-    display:inline;
-}
-
-li{
-    display:inline;
-}
-
-.section-1-button{
-    margin-left: 350px;
+.btn{
     padding: .93em 1.87em;
     background: #d1b28f;
     border-radius: 5px;
@@ -277,4 +265,8 @@ li{
 #article{
     background:#d1b28f;
     margin-left:150px;
+}
+
+.plotly1 {
+    background: hotpink;
 }
