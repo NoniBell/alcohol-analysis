@@ -250,6 +250,7 @@ html.fp-enabled,
     font-size: 100px;
     color:#637897;
     font-weight: bold;
+    text-shadow: -3px 0 #333, 0 3px #333, 3px 0 #333, 0 -3px #333;
 }
 
 .btn{
@@ -270,10 +271,21 @@ html.fp-enabled,
     border-color:#4c351b;
 }
 
-.btn:click{
-    background: none;
+
+#plotly1{
+    height: 600px;
+    width: 1300px;
+    background: #d1b28f;
 }
 
-.plotly1 {
-    background: hotpink;
+#plotly2{
+    height: 600px;
+    width: 1300px;
+    background: #d1b28f;
+}
+
+#plotly3{
+    height: 600px;
+    width: 1300px;
+    background: #d1b28f;
 }
