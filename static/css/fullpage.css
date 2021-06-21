@@ -295,4 +295,6 @@ html.fp-enabled,
     text-align:center;
 }
 
-
+.card{
+    border: 5px solid #4c351b;
+}
