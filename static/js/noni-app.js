@@ -1,4 +1,4 @@
-d3.csv("../../Data/per-capita-alcohol-1890.csv", function(err, rows){
+d3.csv("Data/per-capita-alcohol-1890.csv", function(err, rows){
 
   function filter_and_unpack(rows, key, year) {
   return rows.filter(row => row['Year'] == year).map(row => row[key])
@@ -28,7 +28,18 @@ d3.csv("../../Data/per-capita-alcohol-1890.csv", function(err, rows){
           }
         ]
       })
-    num = num + 5
+    if (num == 1890) {
+      num = num + 30;
+    }
+    else if (num == 1920) {
+      num = num + 40;
+    }
+    else if (num == 2000) {
+      num = num + 14;
+    }
+    else {
+      num = num + 10;
+    }
   }
 
 var data = [{
