@@ -1,8 +1,8 @@
 function optionChanged(){
 
     //Get input value from drop down
-    let country = d3.select("#selDataset").node().value;
-
+    let country = d3.select("#selDataset0").node().value;
+    console.log(country)
     //build plot with new data
     buildPlot(country);
 };
@@ -32,7 +32,7 @@ function buildPlot(country){
             }
         }
           
-        Plotly.newPlot('MyDiv', data1,layout);
+        Plotly.newPlot('MyDiv1', data1,layout);
     })
 }
 
@@ -47,13 +47,13 @@ function init(){
     let unique_countries = []
     country.forEach(element =>{
         if(!unique_countries.includes(element)){
-        console.log(element);
+        // console.log(element);
         unique_countries.push(element)
     }
         else if(unique_countries.includes(element)){
             console.log('skip')
         }})
-    let selector = d3.select("#selDataset");
+    let selector = d3.select("#selDataset0");
     selector.append("option").text("United States");
     unique_countries.forEach((i)=>{
         let option = selector.append("option");
@@ -78,7 +78,7 @@ function init(){
         }
     }
       
-    Plotly.newPlot('MyDiv', initialData,initialLayout);
+    Plotly.newPlot('MyDiv1', initialData,initialLayout);
 });
 };
 

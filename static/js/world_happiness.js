@@ -1,4 +1,4 @@
-function optionChanged(){
+function optionChanged1(){
 
     //Get input value from drop down
     let country = d3.select("#selDataset").node().value;
@@ -6,21 +6,20 @@ function optionChanged(){
     // console.log(alcohol);
     // console.log(country);
     // build plot with new data
-    buildPlot(country,alcohol);
+    buildPlot1(country,alcohol);
 };
 
-function buildPlot(country,alcohol){
-    d3.csv("happiness.csv")
+function buildPlot1(country,alcohol){
+    d3.csv("/././Data/happiness.csv")
         .then((data)=>
         d3
-        .csv("wine.csv")
+        .csv("/././Data/wine.csv")
         .then(wine1=>
-            d3.csv("spirits.csv")
+            d3.csv("/././Data/spirits.csv")
             .then(spirits1=>
-                d3.csv("beer.csv")
+                d3.csv("/././Data/beer.csv")
                 .then(beer1=>{
         let filteredData = data.filter(d => d.country_name === country);
-        //console.log(filteredData);
         let happiness = filteredData.map(d=>d.life_ladder);
         let years = filteredData.map(d=>d.year);
         let wine = wine1.filter(d=>d.country_name === country).map(d=>d.wine_consumption);
@@ -28,7 +27,7 @@ function buildPlot(country,alcohol){
         let beer = beer1.filter(d=>d.country_name === country).map(d=>d.beer_consumption);
         //console.log(happiness);
         //console.log(years);
-        //console.log(wine);
+        console.log(wine);
         if(alcohol === "All Alcohol Types"){
             let trace1 = {
                 x: years,
@@ -65,16 +64,16 @@ function buildPlot(country,alcohol){
                 yaxis: {title: 'Happiness Index (10 pt scale)'},
                 yaxis2: {
                   title: 'Alcohol L/person',
-                  titlefont: {color: 'rgb(148, 103, 189)'},
-                  tickfont: {color: 'rgb(148, 103, 189)'},
+                  titlefont: {color: 'rgb(0,0,0)'},
+                  tickfont: {color: 'rgb(0,0,0)'},
                   overlaying: 'y',
                   side: 'right'
                 }
               };
             
-            Plotly.newPlot('MyDiv', data1,layout);
+            Plotly.newPlot('worldHappiness', data1,layout);
 
-            MyDiv.on('plotly_relayout', function(eventdata){});
+            worldHappiness.on('plotly_relayout', function(eventdata){});
         }else if (alcohol === "Wine"){
             let trace1 = {
                 x: years,
@@ -97,16 +96,16 @@ function buildPlot(country,alcohol){
                 yaxis: {title: 'Happiness Index (10 pt scale)'},
                 yaxis2: {
                   title: `${alcohol} Consumption L`,
-                  titlefont: {color: 'rgb(148, 103, 189)'},
-                  tickfont: {color: 'rgb(148, 103, 189)'},
+                  titlefont: {color: 'rgb(0,0,0)'},
+                  tickfont: {color: 'rgb(0,0,0)'},
                   overlaying: 'y',
                   side: 'right'
                 }
               };
             
-            Plotly.newPlot('MyDiv', data1,layout);
+            Plotly.newPlot('worldHappiness', data1,layout);
 
-            MyDiv.on('plotly_relayout', function(eventdata){});
+            worldHappiness.on('plotly_relayout', function(eventdata){});
         }else if(alcohol === "Spirits"){
             let trace1 = {
                 x: years,
@@ -129,16 +128,16 @@ function buildPlot(country,alcohol){
                 yaxis: {title: 'Happiness Index (10 pt scale)'},
                 yaxis2: {
                   title: `${alcohol} Consumption L`,
-                  titlefont: {color: 'rgb(148, 103, 189)'},
-                  tickfont: {color: 'rgb(148, 103, 189)'},
+                  titlefont: {color: 'rgb(rgb(0,0,0))'},
+                  tickfont: {color: 'rgb(rgb(0,0,0))'},
                   overlaying: 'y',
                   side: 'right'
                 }
               };
             
-            Plotly.newPlot('MyDiv', data1,layout);
+            Plotly.newPlot('worldHappiness', data1,layout);
 
-            MyDiv.on('plotly_relayout', function(eventdata){});
+            worldHappiness.on('plotly_relayout', function(eventdata){});
         }else if (alcohol === "Beer"){
             let trace1 = {
                 x: years,
@@ -161,16 +160,16 @@ function buildPlot(country,alcohol){
                 yaxis: {title: 'Happiness Index (10 pt scale)'},
                 yaxis2: {
                   title: `${alcohol} Consumption L`,
-                  titlefont: {color: 'rgb(148, 103, 189)'},
-                  tickfont: {color: 'rgb(148, 103, 189)'},
+                  titlefont: {color: 'rgb(0,0,0)'},
+                  tickfont: {color: 'rgb(0,0,0)'},
                   overlaying: 'y',
                   side: 'right'
                 }
               };
             
-            Plotly.newPlot('MyDiv', data1,layout);
+            Plotly.newPlot('worldHappiness', data1,layout);
 
-            MyDiv.on('plotly_relayout', function(eventdata){});
+            worldHappiness.on('plotly_relayout', function(eventdata){});
         }
         
         }
@@ -180,17 +179,17 @@ function buildPlot(country,alcohol){
 
 
 //load in initial happiness and alcohol data
-function init(){
+function init1(){
     //read data
-    d3.csv("happiness.csv")
+    d3.csv("/././Data/happiness.csv")
         .then((countries)=>
         d3
-            .csv("wine.csv")
+            .csv("/././Data/wine.csv")
             .then(wine=>
                 d3
-                .csv("spirits.csv")
+                .csv("/././Data/spirits.csv")
                 .then(spirits=>
-                    d3.csv("beer.csv")
+                    d3.csv("/././Data/beer.csv")
                     .then(beer=>{
 
     //build dropdownMenu1 with initial page being United States
@@ -266,16 +265,16 @@ function init(){
         yaxis: {title: 'Happiness Index (10 pt scale)'},
         yaxis2: {
           title: 'Alcohol L/person',
-          titlefont: {color: 'rgb(148, 103, 189)',size:12},
-          tickfont: {color: 'rgb(148, 103, 189)'},
+          titlefont: {color: 'rgb(0,0,0)',size:12},
+          tickfont: {color: 'rgb(0,0,0)'},
           overlaying: 'y',
           side: 'right'
         },
       };
       
-    Plotly.newPlot('MyDiv', initialData,initialLayout);
+    Plotly.newPlot('worldHappiness', initialData,initialLayout);
 
-    MyDiv.on('plotly_relayout',
+    worldHappiness.on('plotly_relayout',
     function(eventdata){
     });
 }))
@@ -283,4 +282,4 @@ function init(){
 )
 };
 
-init();
+init1();

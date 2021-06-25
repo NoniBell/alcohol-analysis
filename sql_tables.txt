@@ -1,0 +1,102 @@
+DROP TABLE alcohol_consumption_per_person_us;
+DROP TABLE alcsales2017to2020;
+DROP TABLE beer;
+DROP TABLE beer_consumption_per_person;
+DROP TABLE cleaned_sales;
+DROP TABLE happiness;
+DROP TABLE per_capita_alcohol_1890;
+DROP TABLE spirits;
+DROP TABLE spirits_consumption_per_person;
+DROP TABLE wine;
+
+
+CREATE TABLE alcohol_consumption_per_person_us (
+  Entity VARCHAR(250),
+  Code VARCHAR(250),
+  Year INT,
+	Spirits Decimal,
+	Beer Decimal,
+	Wine Decimal
+);
+
+CREATE TABLE alcsales2017to2020 (
+    Year INT,
+  Month INT,
+  FIPS INT,
+	Beverage INT,
+	Gallons Decimal,
+	Ethanol Decimal,
+	Population Decimal,
+	PerCapita Decimal,
+	PerCapita3yr Decimal,
+  PctChange Decimal
+);
+
+CREATE TABLE beer (
+  country_name VARCHAR(250),
+  code VARCHAR(250),
+  year INT,
+  beer_consumption Decimal
+);
+
+CREATE TABLE beer_consumption_per_person(
+	Entity VARCHAR(250),
+	Code VARCHAR(250),
+	Year INT,
+	Beer Decimal
+);
+
+CREATE TABLE cleaned_sales (
+  Year INT,
+  Month INT,
+  FIPS VARCHAR(250),
+	Beverage VARCHAR(250),
+	Gallons Decimal,
+	Ethanol Decimal,
+	Population Decimal,
+	PerCapita Decimal,
+	PerCapita3yr Decimal,
+  PctChange Decimal
+);
+
+CREATE TABLE happiness(
+	country_name VARCHAR(250),
+	year INT,
+	life_ladder Decimal,
+	log_gdp_per_capita Decimal,
+	social_support Decimal,
+	healthy_life_expectancy_at_birth Decimal,
+	freedom_to_make_life_choices Decimal,
+	generosity Decimal,
+	perceptions_of_corruption Decimal,
+	positive_effect Decimal,
+	negative_effect Decimal
+);
+
+CREATE TABLE per_capita_alcohol_1890(
+	Entity VARCHAR(250),
+	Code VARCHAR(250),
+	Year INT,
+	alcohol_consumption Decimal
+);
+
+CREATE TABLE spirits(
+	country_name VARCHAR(250),
+  code VARCHAR(250),
+  year INT,
+  spirits_consumption Decimal
+);
+
+CREATE TABLE spirits_consumption_per_person(
+	Entity VARCHAR(250),
+	Code VARCHAR(250),
+	Year INT,
+	Spirits Decimal
+);
+
+CREATE TABLE wine(
+	country_name VARCHAR(250),
+  code VARCHAR(250),
+  year INT,
+  wine_consumption Decimal
+);
