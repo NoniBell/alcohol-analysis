@@ -10,14 +10,14 @@ function optionChanged1(){
 };
 
 function buildPlot1(country,alcohol){
-    d3.csv("/././Data/happiness.csv")
+    d3.csv("../../Data/happiness.csv")
         .then((data)=>
         d3
-        .csv("/././Data/wine.csv")
+        .csv("../../Data/wine.csv")
         .then(wine1=>
-            d3.csv("/././Data/spirits.csv")
+            d3.csv("../../Data/spirits.csv")
             .then(spirits1=>
-                d3.csv("/././Data/beer.csv")
+                d3.csv("../../Data/beer.csv")
                 .then(beer1=>{
         let filteredData = data.filter(d => d.country_name === country);
         let happiness = filteredData.map(d=>d.life_ladder);
@@ -181,15 +181,15 @@ function buildPlot1(country,alcohol){
 //load in initial happiness and alcohol data
 function init1(){
     //read data
-    d3.csv("/././Data/happiness.csv")
+    d3.csv("../../Data/happiness.csv")
         .then((countries)=>
         d3
-            .csv("/././Data/wine.csv")
+            .csv("../../Data/wine.csv")
             .then(wine=>
                 d3
-                .csv("/././Data/spirits.csv")
+                .csv("../../Data/spirits.csv")
                 .then(spirits=>
-                    d3.csv("/././Data/beer.csv")
+                    d3.csv("../../Data/beer.csv")
                     .then(beer=>{
 
     //build dropdownMenu1 with initial page being United States

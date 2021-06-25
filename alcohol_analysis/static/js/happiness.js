@@ -8,7 +8,7 @@ function optionChanged(){
 };
 
 function buildPlot(country){
-    d3.csv("/././Data/happiness.csv").then(function(data){
+    d3.csv("../../Data/happiness.csv").then(function(data){
         let filteredData = data.filter(d => d.country_name === country);
         //console.log(filteredData);
         let happiness = filteredData.map(d=>d.life_ladder);
@@ -41,7 +41,7 @@ function buildPlot(country){
 //load in initial happiness data
 function init(){
     //read data
-    d3.csv("/././Data/happiness.csv").then((countries)=>{
+    d3.csv("../../Data/happiness.csv").then((countries)=>{
 
     //build dropdownMenu with initial page being United States
     let country = countries.map(d=>d.country_name)

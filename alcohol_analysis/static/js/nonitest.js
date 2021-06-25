@@ -1,12 +1,11 @@
-d3.csv("Data/per-capita-alcohol-1890.csv").then(function(rows){
+d3.csv("../Data/per-capita-alcohol-1890.csv").then(function(rows){
 
   // var codes = rows.map(row=> row.Code)
   // console.log(codes)
   //Entity,Code,Year,"Alcohol consumption since 1890 (Alexander & Holmes, 2017)"  
   // function filter_and_unpack(rows, key, year) {
-  //   var rowArray = Array.from(rows);
-  //   console.log(rowArray);
-  //   return rowArray.filter(row => row['Year'] == year).map(row => row[key])
+  //   rowArray = Array.from(rows)
+  //   return rowArray.filter(row => row['year'] == year).map(row => row[key])
   //   }
 
     // var test = filter_and_unpack(rows, 'Code', 1890);
@@ -21,12 +20,11 @@ d3.csv("Data/per-capita-alcohol-1890.csv").then(function(rows){
     var num = 1890;
     for (var i = 0; i <= n; i++) {
       //get alcohol consumption number
-      var z = rows.filter(row => row['Year'] == num).map(row => row["'Alcohol consumption since 1890 (Alexander & Holmes, 2017)'"])
+      var z = rows.filter(row => row['Year'] == num).map(row => row['"Alcohol consumption since 1890 (Alexander & Holmes, 2017)"'])
       //filter_and_unpack(rows, '"Alcohol consumption since 1890 (Alexander & Holmes, 2017)"', num)
       //use country code to get location
       var locations = rows.filter(row => row['Year'] == num).map(row => row['Code'])
       //filter_and_unpack(rows, 'Code', num)
-      console.log(locations)
       //add frame info to list
       frames[i] = {data: [{z: z, locations: locations, text: locations}], name: num}
       slider_steps.push ({
@@ -52,7 +50,7 @@ d3.csv("Data/per-capita-alcohol-1890.csv").then(function(rows){
         num = num + 10;
       }
     }
-  
+
   var data = [{
         type: 'choropleth',
         locationmode: 'world',
