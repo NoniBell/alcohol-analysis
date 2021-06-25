@@ -1,4 +1,4 @@
-function optionChanged(){
+function optionChanged1(){
 
     //Get input value from drop down
     let country = d3.select("#selDataset").node().value;
@@ -6,10 +6,10 @@ function optionChanged(){
     // console.log(alcohol);
     // console.log(country);
     // build plot with new data
-    buildPlot(country,alcohol);
+    buildPlot1(country,alcohol);
 };
 
-function buildPlot(country,alcohol){
+function buildPlot1(country,alcohol){
     d3.csv("happiness.csv")
         .then((data)=>
         d3
@@ -180,7 +180,7 @@ function buildPlot(country,alcohol){
 
 
 //load in initial happiness and alcohol data
-function init(){
+function init1(){
     //read data
     d3.csv("happiness.csv")
         .then((countries)=>
@@ -283,4 +283,4 @@ function init(){
 )
 };
 
-init();
+init1();
