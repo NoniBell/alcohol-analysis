@@ -1,4 +1,4 @@
-Entity,Code,Year,"Alcohol consumption since 1890 (Alexander & Holmes, 2017)"
+Entity,Code,Year,alcohol_consumption
 Australia,AUS,1890,5.9
 Australia,AUS,1920,3.8
 Australia,AUS,1960,7.1
