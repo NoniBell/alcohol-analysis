@@ -1,0 +1,1 @@
+FLASK_APP=alcohol_analysis/app.py flask run
