@@ -275,7 +275,7 @@ html.fp-enabled,
 #plotly1{
     height: 600px;
     width: 1300px;
-    background: #d1b28f;
+    /* background: #d1b28f; */
 }
 
 #plotly1 h1{
@@ -290,7 +290,7 @@ html.fp-enabled,
 #plotly2{
     height: 600px;
     width: 1300px;
-    background: #d1b28f;
+    /* background: #d1b28f; */
 }
 
 #plotly2 h1{
@@ -305,7 +305,7 @@ html.fp-enabled,
 #plotly3{
     height: 600px;
     width: 1300px;
-    background: #d1b28f;
+    /* background: #d1b28f; */
 }
 
 #plotly3 h1{
@@ -320,6 +320,20 @@ html.fp-enabled,
 .py-5 {
     padding-top: 3rem!important;
     padding-bottom: 1rem!important;
+}
+
+.well{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 99%;
+}
+
+#happiness{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 99%;
 }
 
 .card{
