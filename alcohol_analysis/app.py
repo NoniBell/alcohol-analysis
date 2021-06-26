@@ -233,10 +233,12 @@ def  alcohol_consumption_per_person_us():
     all_alcohol= []
     for entity, code, year, spirits, beer, wine in results:
         all_dict = {}
-        all_dict["entity"] = entity
-        all_dict["code"] = code
-        all_dict["year"] = year
-        all_dict["spirits_consumption"] = spirits
+        all_dict["Entity"] = entity
+        all_dict["Code"] = code
+        all_dict["Year"] = year
+        all_dict["Spirits"] = spirits
+        all_dict["Beer"] = beer
+        all_dict["Wine"] = wine
         all_alcohol.append(all_dict)
     return jsonify(all_alcohol)
 
@@ -245,7 +247,21 @@ def alcsales2017to2020():
     session = Session(engine)
     results = session.query(AlcoholS.all).all()
     session.close()
-    return jsonify(results)
+    all_sales= []
+    for year, month, FIPS, beverage, gallons, ethanol, population, per_capita, per_capita_3yr, pct_change in results:
+        sales_dict = {}
+        sales_dict["Year"] = year
+        sales_dict["Month"] = month
+        sales_dict["FIPS"] = FIPS
+        sales_dict["Beverage"] = beverage
+        sales_dict["Gallons"] = gallons
+        sales_dict["Ethanol"] = ethanol
+        sales_dict["Population"] = population
+        sales_dict["PerCapita"] = per_capita
+        sales_dict["PerCapita3yr"] = per_capita_3yr
+        sales_dict["PctChange"] = pct_change
+        all_sales.append(sales_dict)
+    return jsonify(all_sales)
 
 @app.route("/api/beer")
 def beer():
@@ -269,10 +285,10 @@ def beer_consumption_per_person():
     all_beerc= []
     for entity, code, year, beer in results:
         beerc_dict = {}
-        beerc_dict["entity"] = entity
-        beerc_dict["code"] = code
-        beerc_dict["year"] = year
-        beerc_dict["wine_consumption"] = beer
+        beerc_dict["Entity"] = entity
+        beerc_dict["Code"] = code
+        beerc_dict["Year"] = year
+        beerc_dict["Beer"] = beer
         all_beerc.append(beerc_dict)
     return jsonify(all_beerc)
 
@@ -281,21 +297,56 @@ def cleaned_sales():
     session = Session(engine)
     results = session.query(CleanedSales.all).all()
     session.close()
-    return jsonify(results)
+    clean_sales= []
+    for year, month, FIPS, beverage, gallons, ethanol, population, per_capita, per_capita_3yr, pct_change in results:
+        clean_dict = {}
+        clean_dict["Year"] = year
+        clean_dict["Month"] = month
+        clean_dict["FIPS"] = FIPS
+        clean_dict["Beverage"] = beverage
+        clean_dict["Gallons"] = gallons
+        clean_dict["Ethanol"] = ethanol
+        clean_dict["Population"] = population
+        clean_dict["PerCapita"] = per_capita
+        clean_dict["PerCapita3yr"] = per_capita_3yr
+        clean_dict["PctChange"] = pct_change
+        clean_sales.append(clean_dict)
+    return jsonify(clean_sales)
 
 @app.route("/api/happiness")
 def happiness():
     session = Session(engine)
     results = session.query(Happiness.all).all()
     session.close()
-    return jsonify(results)
+    happiness_list= []
+    for country_name, year, life_ladder in results:
+        happiness_dict = {}
+        happiness_dict["country_name"] = country_name
+        happiness_dict["year"] = year
+        happiness_dict["life_ladder"] = life_ladder
+        happiness_list.append(happiness_dict)
+    return jsonify(happiness_list)
 
 @app.route("/api/per_capita_alcohol_1890")
 def per_capita_alcohol_1890():
     session = Session(engine)
     results = session.query(PCAlcohol.all).all()
     session.close()
-    return jsonify(results)
+    all_sales= []
+    for year, month, FIPS, beverage, gallons, ethanol, population, per_capita, per_capita_3yr, pct_change in results:
+        sales_dict = {}
+        sales_dict["Year"] = year
+        sales_dict["Month"] = month
+        sales_dict["FIPS"] = FIPS
+        sales_dict["Beverage"] = beverage
+        sales_dict["Gallons"] = gallons
+        sales_dict["Ethanol"] = ethanol
+        sales_dict["Population"] = population
+        sales_dict["PerCapita"] = per_capita
+        sales_dict["PerCapita3yr"] = per_capita_3yr
+        sales_dict["PctChange"] = pct_change
+        all_sales.append(sales_dict)
+    return jsonify(all_sales)
 
 @app.route("/api/spirits")
 def spirits():
@@ -307,7 +358,7 @@ def spirits():
         spirits_dict = {}
         spirits_dict["country_name"] = country_name
         spirits_dict["year"] = year
-        spirits_dict["wine_consumption"] = spirits_consumption
+        spirits_dict["spirits_consumption"] = spirits_consumption
         all_spirits.append(spirits_dict)
     return jsonify(all_spirits)
 
@@ -319,10 +370,10 @@ def spirits_consumption_per_person():
     all_spiritsc= []
     for entity, code, year, spirits in results:
         spiritsc_dict = {}
-        spiritsc_dict["entity"] = entity
-        spiritsc_dict["code"] = code
-        spiritsc_dict["year"] = year
-        spiritsc_dict["wine_consumption"] = spirits
+        spiritsc_dict["Entity"] = entity
+        spiritsc_dict["Code"] = code
+        spiritsc_dict["Year"] = year
+        spiritsc_dict["Spirits"] = spirits
         all_spiritsc.append(spiritsc_dict)
     return jsonify(all_spiritsc)
 
