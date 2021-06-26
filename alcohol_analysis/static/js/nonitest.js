@@ -1,4 +1,4 @@
-d3.csv("../Data/per-capita-alcohol-1890.csv").then(function(rows){
+d3.json("/api/per_capita_alcohol_1890").then(function(rows){
 
     var frames = []
     var slider_steps = []
