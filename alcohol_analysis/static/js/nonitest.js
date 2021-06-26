@@ -45,12 +45,14 @@ d3.csv("../Data/per-capita-alcohol-1890.csv").then(function(rows){
         z: frames[0].data[0].z,
         text: frames[0].data[0].locations,
         zauto: false,
-        zmin: 4,
+        zmin: 0,
         zmax: 23
   
   }];
   var layout = {
-      title: 'Per Capita Alcohol Consumption in Select Countries<br>1890 - 2014',
+      title: 'Per Capita Alcohol Consumption in Select Countries<br>In Gallons of Ethanol<br>1890 - 2014',
+      width: 900,
+      height: 500,
       geo:{
          scope: 'world',
          countrycolor: 'rgb(255, 255, 255)',
@@ -60,7 +62,7 @@ d3.csv("../Data/per-capita-alcohol-1890.csv").then(function(rows){
          lakecolor: 'rgb(255, 255, 255)',
          subunitcolor: 'rgb(255, 255, 255)',
          lonaxis: {},
-         lataxis: {}
+         lataxis: {},
       },
       updatemenus: [{
         x: 0.1,
