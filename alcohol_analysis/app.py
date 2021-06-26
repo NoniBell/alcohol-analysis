@@ -59,7 +59,16 @@ def beer():
 
     session.close()
 
-    return jsonify(results)
+    beer_list = []
+
+    for country_name, year, beer_consumption in results:
+        beer_dict={}
+        beer_dict["country_name"] = country_name
+        beer_dict["year"] = year
+        beer_dict["beer_consumption"] = beer_consumption
+        beer_list.append(beer_dict)
+
+    return jsonify(beer_list)
 
 @app.route("/api/cleaned_sales")
 def cleaned_sales():
@@ -70,8 +79,19 @@ def cleaned_sales():
     results = session.query(CleanedSales.year, CleanedSales.fips, CleanedSales.beverage, CleanedSales.gallons, CleanedSales.ethanol).all()
 
     session.close()
+    
+    sales_list = []
 
-    return jsonify(results)
+    for year, fips, beverage, gallons, ethanol in results:
+        sales_dict={}
+        sales_dict["year"] = year
+        sales_dict["year"] = fips
+        sales_dict["beverage"] = beverage
+        sales_dict["gallons"] = gallons
+        sales_dict["ethanol"] = ethanol
+        sales_list.append(sales_dict)
+
+    return jsonify(sales_list)
 
 @app.route("/api/happiness")
 def happiness():
@@ -104,7 +124,18 @@ def per_capita():
 
     session.close()
 
-    return jsonify(results)
+    per_capita_list = []
+
+    for entity, code, year, alcohol_consumption in results:
+        per_capita_dict={}
+        per_capita_dict["entity"] = entity
+        per_capita_dict["code"] = code
+        per_capita_dict["year"] = year
+        per_capita_dict["alcohol_consumption"] = alcohol_consumption
+        per_capita_list.append(per_capita_dict)
+
+    return jsonify(per_capita_list)
+
 
 @app.route("/api/spirits")
 def spirits():
@@ -116,7 +147,17 @@ def spirits():
 
     session.close()
 
-    return jsonify(results)
+    spirits_list = []
+
+    for country_name, year, spirits_consumption in results:
+        spirits_dict={}
+        spirits_dict["country_name"] = country_name
+        spirits_dict["year"] = year
+        spirits_dict["beer_consumption"] = spirits_consumption
+        spirits_list.append(spirits_dict)
+
+    return jsonify(spirits_list)
+
 
 @app.route("/api/wine")
 def wine():
@@ -128,7 +169,16 @@ def wine():
 
     session.close()
 
-    return jsonify(results)
+    wine_list = []
+
+    for country_name, year, wine_consumption in results:
+        wine_dict={}
+        wine_dict["country_name"] = country_name
+        wine_dict["year"] = year
+        wine_dict["beer_consumption"] = wine_consumption
+        wine_list.append(wine_dict)
+
+    return jsonify(wine_list)
 
 
 if __name__ == '__main__':
