@@ -10,14 +10,14 @@ function optionChanged1(){
 };
 
 function buildPlot1(country,alcohol){
-    d3.csv("../../Data/happiness.csv")
+    d3.json("/api/happiness")
         .then((data)=>
         d3
-        .csv("../../Data/wine.csv")
+        .json("/api/wine")
         .then(wine1=>
-            d3.csv("../../Data/spirits.csv")
+            d3.json("/api/spirits")
             .then(spirits1=>
-                d3.csv("../../Data/beer.csv")
+                d3.json("/api/beer")
                 .then(beer1=>{
         let filteredData = data.filter(d => d.country_name === country);
         let happiness = filteredData.map(d=>d.life_ladder);
@@ -181,15 +181,15 @@ function buildPlot1(country,alcohol){
 //load in initial happiness and alcohol data
 function init1(){
     //read data
-    d3.csv("../../Data/happiness.csv")
+    d3.json("/api/happiness")
         .then((countries)=>
         d3
-            .csv("../../Data/wine.csv")
+            .json("/api/wine")
             .then(wine=>
                 d3
-                .csv("../../Data/spirits.csv")
+                .json("/api/spirits")
                 .then(spirits=>
-                    d3.csv("../../Data/beer.csv")
+                    d3.json("/api/beer")
                     .then(beer=>{
 
     //build dropdownMenu1 with initial page being United States

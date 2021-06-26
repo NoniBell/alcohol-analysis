@@ -9,10 +9,10 @@ function optionChanged2(){
   
   //Build Plots
   function buildPlot2(state,alcohol){
-    d3.csv("../../Data/happiness.csv")
+    d3.json("/api/happiness")
         .then((data)=>
         d3
-        .csv("../../Data/cleaned_sales.csv")
+        .csv("/api/cleaned_sales")
           .then(states1=>{
         let filteredData = states1.filter(d => d.FIPS === state);
         //console.log(filteredData);
@@ -158,10 +158,10 @@ function optionChanged2(){
   //load in initial happiness and alcohol data
   function init2(){
     //read data
-    d3.csv("../../Data/happiness.csv")
+    d3.csv("/api/happiness")
         .then((countries)=>
         d3
-            .csv("../../Data/cleaned_sales.csv")
+            .csv("/api/cleaned_sales")
             .then(states=>{
   
     //build dropdownMenu1 with initial page being United States
