@@ -1,4 +1,4 @@
-d3.json("/api/per_capita_alcohol_1890").then(function(rows){
+d3.csv("../Data/per-capita-alcohol-1890.csv").then(function(rows){
 
     var frames = []
     var slider_steps = []
@@ -9,9 +9,9 @@ d3.json("/api/per_capita_alcohol_1890").then(function(rows){
     var num = 1890;
     for (var i = 0; i <= n; i++) {
       //get alcohol consumption number
-      var z = rows.filter(row => row['year'] == num).map(row => row['alcohol_consumption'])
+      var z = rows.filter(row => row['Year'] == num).map(row => row['alcohol_consumption'])
       //use country code to get location
-      var locations = rows.filter(row => row['year'] == num).map(row => row['code'])
+      var locations = rows.filter(row => row['Year'] == num).map(row => row['Code'])
       //add frame info to list
       frames[i] = {data: [{z: z, locations: locations, text: locations}], name: num}
       slider_steps.push ({

@@ -85,7 +85,7 @@ def cleaned_sales():
     for year, fips, beverage, gallons, ethanol in results:
         sales_dict={}
         sales_dict["year"] = year
-        sales_dict["year"] = fips
+        sales_dict["fips"] = fips
         sales_dict["beverage"] = beverage
         sales_dict["gallons"] = gallons
         sales_dict["ethanol"] = ethanol

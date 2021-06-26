@@ -9,12 +9,12 @@ function optionChanged2(){
   
   //Build Plots
   function buildPlot2(state,alcohol){
-    d3.json("/api/happiness")
+    d3.csv("../Data/happiness.csv")
         .then((data)=>
         d3
-        .json("/api/cleaned_sales")
+        .csv("../Data/cleaned_sales.csv")
           .then(states1=>{
-        let filteredData = states1.filter(d => d.fips === state);
+        let filteredData = states1.filter(d => d.FIPS === state);
         //console.log(filteredData);
         let happiness = data.filter(d=>d.country_name === "United States").map(d=>d.life_ladder);
         let years = data.filter(d=>d.country_name === "United States").map(d=>d.year);
@@ -28,7 +28,7 @@ function optionChanged2(){
               };
               let trace2 = {
                 x: years,
-                y: filteredData.filter(d=>d.beverage === "All Beverages").map(d=>d.ethanol),
+                y: filteredData.filter(d=>d.Beverage === "All Beverages").map(d=>d.Ethanol),
                 type: 'scatter',
                 name: 'Alcohol Consumption (G)',
                 yaxis: "y2"
@@ -60,7 +60,7 @@ function optionChanged2(){
               };
             let trace2 = {
                 x: years,
-                y: filteredData.filter(d=>d.beverage === "Wine").map(d=>d.gallons),
+                y: filteredData.filter(d=>d.Beverage === "Wine").map(d=>d.Gallons),
                 type: 'scatter',
                 name: `${alcohol} Consumption`,
                 yaxis: "y2"
@@ -92,7 +92,7 @@ function optionChanged2(){
               };
             let trace2 = {
                 x: years,
-                y: filteredData.filter(d=>d.beverage === "Spirits").map(d=>d.gallons),
+                y: filteredData.filter(d=>d.Beverage === "Spirits").map(d=>d.Gallons),
                 type: 'scatter',
                 name: `${alcohol} Consumption`,
                 yaxis: "y2"
@@ -124,7 +124,7 @@ function optionChanged2(){
               };
             let trace2 = {
                 x: years,
-                y: filteredData.filter(d=>d.beverage === "Beer").map(d=>d.gallons),
+                y: filteredData.filter(d=>d.Beverage === "Beer").map(d=>d.Gallons),
                 type: 'scatter',
                 name: `${alcohol} Consumption`,
                 yaxis: "y2"
@@ -158,10 +158,10 @@ function optionChanged2(){
   //load in initial happiness and alcohol data
   function init2(){
     //read data
-    d3.json("/api/happiness").then((countries)=>d3.json("/api/cleaned_sales").then(states=>{
+    d3.csv("../Data/happiness.csv").then((countries)=>d3.csv("../Data/cleaned_sales.csv").then(states=>{
   
     //build dropdownMenu1 with initial page being United States
-    let state = states.map(d=>d.fips)
+    let state = states.map(d=>d.FIPS)
     console.log(state);
     let unique_states = []
     state.forEach(element =>{
@@ -180,7 +180,7 @@ function optionChanged2(){
     });
   
     //build dropdownMenu2 with initial page being all alcohol types
-    let alcohol_types = states.map(d=>d.beverage);
+    let alcohol_types = states.map(d=>d.Beverage);
     let unique_alcohol = []
     alcohol_types.forEach(element =>{
       if(!unique_alcohol.includes(element)){
@@ -198,10 +198,10 @@ function optionChanged2(){
     });
   
    //filter data for plot
-    let initialState = states.filter(d => d.fips === "Illinois");
+    let initialState = states.filter(d => d.FIPS === "Illinois");
     let initialHappiness = countries.filter(d=>d.country_name === "United States").map(d=>d.life_ladder);
     let initialYears = countries.filter(d=>d.country_name === "United States").map(d=>d.year);
-    let initialAll = initialState.map(d=>d.ethanol);
+    let initialAll = initialState.map(d=>d.Ethanol);
     
     let initialTrace1 = {
         x: initialYears,
