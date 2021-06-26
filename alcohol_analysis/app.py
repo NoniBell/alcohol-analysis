@@ -153,7 +153,7 @@ def spirits():
         spirits_dict={}
         spirits_dict["country_name"] = country_name
         spirits_dict["year"] = year
-        spirits_dict["beer_consumption"] = spirits_consumption
+        spirits_dict["spirits_consumption"] = spirits_consumption
         spirits_list.append(spirits_dict)
 
     return jsonify(spirits_list)
@@ -175,7 +175,7 @@ def wine():
         wine_dict={}
         wine_dict["country_name"] = country_name
         wine_dict["year"] = year
-        wine_dict["beer_consumption"] = wine_consumption
+        wine_dict["wine_consumption"] = wine_consumption
         wine_list.append(wine_dict)
 
     return jsonify(wine_list)
