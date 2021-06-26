@@ -83,14 +83,23 @@ def happiness():
 
     session.close()
 
-    return jsonify(results)
+    happiness_list = []
+
+    for country_name, year, life_ladder in results:
+        happiness_dict={}
+        happiness_dict["country_name"] = country_name
+        happiness_dict["year"] = year
+        happiness_dict["life_ladder"] = life_ladder
+        happiness_list.append(happiness_dict)
+
+    return jsonify(happiness_list)
 
 @app.route("/api/per_capita_alcohol_1890")
 def per_capita():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return happiness data"""
+    """Return per capita data"""
     results = session.query(PerCapita.entity, PerCapita.code, PerCapita.year, PerCapita.alcohol_consumption).all()
 
     session.close()
@@ -102,7 +111,7 @@ def spirits():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return beer data"""
+    """Return spirits data"""
     results = session.query(Spirits.country_name,Spirits.year,Spirits.spirits_consumption).all()
 
     session.close()
@@ -114,7 +123,7 @@ def wine():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return beer data"""
+    """Return wine data"""
     results = session.query(Wine.country_name,Wine.year,Wine.wine_consumption).all()
 
     session.close()
