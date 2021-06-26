@@ -1,102 +1,73 @@
-DROP TABLE alcohol_consumption_per_person_us;
-DROP TABLE alcsales2017to2020;
 DROP TABLE beer;
-DROP TABLE beer_consumption_per_person;
 DROP TABLE cleaned_sales;
 DROP TABLE happiness;
 DROP TABLE per_capita_alcohol_1890;
 DROP TABLE spirits;
-DROP TABLE spirits_consumption_per_person;
 DROP TABLE wine;
-
-
-CREATE TABLE alcohol_consumption_per_person_us (
-  Entity VARCHAR(250),
-  Code VARCHAR(250),
-  Year INT,
-	Spirits Decimal,
-	Beer Decimal,
-	Wine Decimal
-);
-
-CREATE TABLE alcsales2017to2020 (
-    Year INT,
-  Month INT,
-  FIPS INT,
-	Beverage INT,
-	Gallons Decimal,
-	Ethanol Decimal,
-	Population Decimal,
-	PerCapita Decimal,
-	PerCapita3yr Decimal,
-  PctChange Decimal
-);
 
 CREATE TABLE beer (
   country_name VARCHAR(250),
   code VARCHAR(250),
   year INT,
-  beer_consumption Decimal
+  beer_consumption Float
 );
 
-CREATE TABLE beer_consumption_per_person(
-	Entity VARCHAR(250),
-	Code VARCHAR(250),
-	Year INT,
-	Beer Decimal
-);
+ALTER TABLE beer add column id serial primary key;
 
 CREATE TABLE cleaned_sales (
   Year INT,
   Month INT,
   FIPS VARCHAR(250),
 	Beverage VARCHAR(250),
-	Gallons Decimal,
-	Ethanol Decimal,
-	Population Decimal,
-	PerCapita Decimal,
-	PerCapita3yr Decimal,
-  PctChange Decimal
+	Gallons Float,
+	Ethanol Float,
+	Population Float,
+	PerCapita Float,
+	PerCapita3yr Float,
+  PctChange Float
 );
+
+ALTER TABLE cleaned_sales add column id serial primary key;
 
 CREATE TABLE happiness(
 	country_name VARCHAR(250),
 	year INT,
-	life_ladder Decimal,
-	log_gdp_per_capita Decimal,
-	social_support Decimal,
-	healthy_life_expectancy_at_birth Decimal,
-	freedom_to_make_life_choices Decimal,
-	generosity Decimal,
-	perceptions_of_corruption Decimal,
-	positive_effect Decimal,
-	negative_effect Decimal
+	life_ladder Float,
+	log_gdp_per_capita Float,
+	social_support Float,
+	healthy_life_expectancy_at_birth Float,
+	freedom_to_make_life_choices Float,
+	generosity Float,
+	perceptions_of_corruption Float,
+	positive_effect Float,
+	negative_effect Float
 );
+
+ALTER TABLE happiness add column id serial primary key;
 
 CREATE TABLE per_capita_alcohol_1890(
 	Entity VARCHAR(250),
 	Code VARCHAR(250),
 	Year INT,
-	alcohol_consumption Decimal
+	alcohol_consumption Float
 );
+
+ALTER TABLE per_capita_alcohol_1890 add column id serial primary key;
 
 CREATE TABLE spirits(
 	country_name VARCHAR(250),
   code VARCHAR(250),
   year INT,
-  spirits_consumption Decimal
+  spirits_consumption Float
 );
 
-CREATE TABLE spirits_consumption_per_person(
-	Entity VARCHAR(250),
-	Code VARCHAR(250),
-	Year INT,
-	Spirits Decimal
-);
+ALTER TABLE spirits add column id serial primary key;
 
 CREATE TABLE wine(
 	country_name VARCHAR(250),
   code VARCHAR(250),
   year INT,
-  wine_consumption Decimal
+  wine_consumption Float
 );
+
+ALTER TABLE wine add column id serial primary key;
