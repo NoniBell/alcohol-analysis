@@ -27,14 +27,18 @@ Base.prepare(engine, reflect=True)
 
 # # Save reference to the table
 Beer = Base.classes.beer
+CleanedSales = Base.classes.cleaned_sales
 Happiness = Base.classes.happiness
 PerCapita = Base.classes.per_capita_alcohol_1890
+Spirits = Base.classes.spirits
+Wine = Base.classes.wine
+
 
 # #################################################
 # # Flask Setup
 # #################################################
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 # #################################################
 # # Flask Routes
@@ -52,6 +56,18 @@ def beer():
 
     """Return beer data"""
     results = session.query(Beer.country_name,Beer.year,Beer.beer_consumption).all()
+
+    session.close()
+
+    return jsonify(results)
+
+@app.route("/api/cleaned_sales")
+def cleaned_sales():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Return sales data"""
+    results = session.query(CleanedSales.year, CleanedSales.fips, CleanedSales.beverage, CleanedSales.gallons, CleanedSales.ethanol).all()
 
     session.close()
 
@@ -76,6 +92,30 @@ def per_capita():
 
     """Return happiness data"""
     results = session.query(PerCapita.entity, PerCapita.code, PerCapita.year, PerCapita.alcohol_consumption).all()
+
+    session.close()
+
+    return jsonify(results)
+
+@app.route("/api/spirits")
+def spirits():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Return beer data"""
+    results = session.query(Spirits.country_name,Spirits.year,Spirits.spirits_consumption).all()
+
+    session.close()
+
+    return jsonify(results)
+
+@app.route("/api/wine")
+def wine():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Return beer data"""
+    results = session.query(Wine.country_name,Wine.year,Wine.wine_consumption).all()
 
     session.close()
 
