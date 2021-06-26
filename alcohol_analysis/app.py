@@ -316,7 +316,7 @@ def cleaned_sales():
 @app.route("/api/happiness")
 def happiness():
     session = Session(engine)
-    results = session.query(Happiness.all).all()
+    results = session.query(Happiness.country_name,Happiness.year,Happiness.life_ladder).all()
     session.close()
     happiness_list= []
     for country_name, year, life_ladder in results:
