@@ -1,25 +1,34 @@
 function optionChanged2(){
 
   //Get input value from drop down
-  let state = d3.select("#selDataset2").node().value;
+  let country = d3.select("#selDataset2").node().value;
   let alcohol = d3.select("#selDataset3").node().value;
+  // console.log(alcohol);
+  // console.log(country);
   // build plot with new data
-  buildPlot2(state,alcohol);
+  buildPlot2(country,alcohol);
 };
 
-//Build Plots
-function buildPlot2(state,alcohol){
+function buildPlot2(country,alcohol){
   d3.json("/api/happiness")
       .then((data)=>
       d3
-      .json("/api/cleaned_data")
-        .then(states1=>{
-      let filteredData = states1.filter(d => d.fips === state);
-      //console.log(filteredData);
-      let happiness = data.filter(d=>d.country_name === "United States").map(d=>d.life_ladder);
-      let years = data.filter(d=>d.country_name === "United States").map(d=>d.year);
-
-      if(alcohol === "All Alcohol Types" || alcohol === "All Beverages"){
+      .json("/api/wine")
+      .then(wine1=>
+          d3.json("/api/spirits")
+          .then(spirits1=>
+              d3.json("/api/beer")
+              .then(beer1=>{
+      let filteredData = data.filter(d => d.country_name === country);
+      let happiness = filteredData.map(d=>d.life_ladder);
+      let years = filteredData.map(d=>d.year);
+      let wine = wine1.filter(d=>d.country_name === country).map(d=>d.wine_consumption);
+      let spirits = spirits1.filter(d=>d.country_name === country).map(d=>d.spirits_consumption);
+      let beer = beer1.filter(d=>d.country_name === country).map(d=>d.beer_consumption);
+      //console.log(happiness);
+      //console.log(years);
+      console.log(wine);
+      if(alcohol === "All Alcohol Types"){
           let trace1 = {
               x: years,
               y: happiness,
@@ -28,19 +37,33 @@ function buildPlot2(state,alcohol){
             };
             let trace2 = {
               x: years,
-              y: filteredData.filter(d=>d.beverage === "All Beverages").map(d=>d.ethanol),
+              y: wine,
               type: 'scatter',
-              name: 'Alcohol Consumption (G)',
+              name: 'Wine Consumption',
+              yaxis: "y2"
+            };
+          let trace3 = {
+              x: years,
+              y: spirits,
+              type: 'scatter',
+              name: 'Spirits Consumption',
+              yaxis: "y2"
+            };
+          let trace4 = {
+              x: years,
+              y: beer,
+              type: 'scatter',
+              name: 'Beer Consumption',
               yaxis: "y2"
             };
           
-          let data1 = [trace1, trace2];
+          let data1 = [trace1, trace2, trace3, trace4];
 
           var layout = {
-              title: `United States Happiness Index vs. ${state} Alcohol Consumption`,
+              title: `${country} Happiness Index vs. Alcohol Consumption`,
               yaxis: {title: 'Happiness Index (10 pt scale)'},
               yaxis2: {
-                title: 'Alcohol G/person',
+                title: 'Alcohol L/person',
                 titlefont: {color: 'rgb(0,0,0)'},
                 tickfont: {color: 'rgb(0,0,0)'},
                 overlaying: 'y',
@@ -60,7 +83,7 @@ function buildPlot2(state,alcohol){
             };
           let trace2 = {
               x: years,
-              y: filteredData.filter(d=>d.beverage === "Wine").map(d=>d.gallons),
+              y: wine,
               type: 'scatter',
               name: `${alcohol} Consumption`,
               yaxis: "y2"
@@ -69,10 +92,10 @@ function buildPlot2(state,alcohol){
           let data1 = [trace1, trace2];
 
           var layout = {
-              title: `United States Happiness Index vs. ${state} ${alcohol} Consumption`,
+              title: `${country} Happiness Index vs. ${alcohol} Consumption`,
               yaxis: {title: 'Happiness Index (10 pt scale)'},
               yaxis2: {
-                title: `${alcohol} Consumption G`,
+                title: `${alcohol} Consumption L`,
                 titlefont: {color: 'rgb(0,0,0)'},
                 tickfont: {color: 'rgb(0,0,0)'},
                 overlaying: 'y',
@@ -92,7 +115,7 @@ function buildPlot2(state,alcohol){
             };
           let trace2 = {
               x: years,
-              y: filteredData.filter(d=>d.beverage === "Spirits").map(d=>d.gallons),
+              y: spirits,
               type: 'scatter',
               name: `${alcohol} Consumption`,
               yaxis: "y2"
@@ -101,12 +124,12 @@ function buildPlot2(state,alcohol){
           let data1 = [trace1, trace2];
 
           var layout = {
-              title: `United States Happiness Index vs. ${state} ${alcohol} Consumption`,
+              title: `${country} Happiness Index vs. ${alcohol} Consumption`,
               yaxis: {title: 'Happiness Index (10 pt scale)'},
               yaxis2: {
-                title: `${alcohol} Consumption G`,
-                titlefont: {color: 'rgb(0,0,0)'},
-                tickfont: {color: 'rgb(0,0,0)'},
+                title: `${alcohol} Consumption L`,
+                titlefont: {color: 'rgb(rgb(0,0,0))'},
+                tickfont: {color: 'rgb(rgb(0,0,0))'},
                 overlaying: 'y',
                 side: 'right'
               }
@@ -124,7 +147,7 @@ function buildPlot2(state,alcohol){
             };
           let trace2 = {
               x: years,
-              y: filteredData.filter(d=>d.beverage === "Beer").map(d=>d.gallons),
+              y: beer,
               type: 'scatter',
               name: `${alcohol} Consumption`,
               yaxis: "y2"
@@ -133,10 +156,10 @@ function buildPlot2(state,alcohol){
           let data1 = [trace1, trace2];
 
           var layout = {
-              title: `United States Happiness Index vs. ${state} ${alcohol} Consumption`,
+              title: `${country} Happiness Index vs. ${alcohol} Consumption`,
               yaxis: {title: 'Happiness Index (10 pt scale)'},
               yaxis2: {
-                title: `${alcohol} Consumption G`,
+                title: `${alcohol} Consumption L`,
                 titlefont: {color: 'rgb(0,0,0)'},
                 tickfont: {color: 'rgb(0,0,0)'},
                 overlaying: 'y',
@@ -152,56 +175,58 @@ function buildPlot2(state,alcohol){
       }
       )
   )    
-}
+))}
 
 
 //load in initial happiness and alcohol data
 function init2(){
   //read data
-  d3.json("/api/happiness").then((countries)=>d3.json("/api/cleaned_sales").then(states=>{
+  d3.json("/api/happiness")
+      .then((countries)=>
+      d3
+          .json("/api/wine")
+          .then(wine=>
+              d3
+              .json("/api/spirits")
+              .then(spirits=>
+                  d3.json("/api/beer")
+                  .then(beer=>{
 
   //build dropdownMenu1 with initial page being United States
-  let state = states.map(d=>d.fips)
-  console.log(state);
-  let unique_states = []
-  state.forEach(element =>{
-      if(!unique_states.includes(element)){
-      console.log(element);
-      unique_states.push(element)
+  console.log(beer);
+  let country = countries.map(d=>d.country_name)
+  let unique_countries = []
+  country.forEach(element =>{
+      if(!unique_countries.includes(element)){
+      // console.log(element);
+      unique_countries.push(element)
   }
-      else if(unique_states.includes(element)){
+      else if(unique_countries.includes(element)){
           console.log('skip')
       }})
   let selector = d3.select("#selDataset2");
-  selector.append("option").text("Illinois");
-  unique_states.forEach((i)=>{
+  selector.append("option").text("United States");
+  unique_countries.forEach((i)=>{
       let option = selector.append("option");
       option.text(i);
   });
 
   //build dropdownMenu2 with initial page being all alcohol types
-  let alcohol_types = states.map(d=>d.beverage);
-  let unique_alcohol = []
-  alcohol_types.forEach(element =>{
-    if(!unique_alcohol.includes(element)){
-    console.log(element);
-    unique_alcohol.push(element)
-}
-    else if(unique_alcohol.includes(element)){
-        console.log('skip')
-    }})
+  let alcohol_types = ['Wine','Spirits','Beer'];
   let selector1 = d3.select("#selDataset3");
   selector1.append("option").text("All Alcohol Types");
-  unique_alcohol.forEach((i)=>{
+  alcohol_types.forEach((i)=>{
       let option = selector1.append("option");
       option.text(i)
   });
 
  //filter data for plot
-  let initialState = states.filter(d => d.fips === "Illinois");
-  let initialHappiness = countries.filter(d=>d.country_name === "United States").map(d=>d.life_ladder);
-  let initialYears = countries.filter(d=>d.country_name === "United States").map(d=>d.year);
-  let initialAll = initialState.map(d=>d.ethanol);
+  let initialFilteredData = countries.filter(d => d.country_name === "United States");
+  let initialHappiness = initialFilteredData.map(d=>d.life_ladder);
+  let initialYears = initialFilteredData.map(d=>d.year);
+  let initialWine = wine.filter(d=>d.country_name ==="United States").map(d=>d.wine_consumption);
+  let initialSpirits = spirits.filter(d=>d.country_name === "United States").map(d=>d.spirits_consumption);
+  let initialBeer = beer.filter(d=>d.country_name === "United States").map(d=>d.beer_consumption);
   
   let initialTrace1 = {
       x: initialYears,
@@ -212,19 +237,35 @@ function init2(){
 
   let initialTrace2 = {
       x: initialYears,
-      y: initialAll,
+      y: initialWine,
       type: 'scatter',
-      name: 'Beverage Consumption',
+      name: 'Wine Consumption',
+      yaxis: "y2"
+    };
+
+  let initialTrace3 = {
+      x: initialYears,
+      y: initialSpirits,
+      type: 'scatter',
+      name: 'Spirits Consumption',
+      yaxis: "y2"
+    };
+  
+  let initialTrace4 = {
+      x: initialYears,
+      y: initialBeer,
+      type: 'scatter',
+      name: 'Beer Consumption',
       yaxis: "y2"
     };
     
-  let initialData = [initialTrace1, initialTrace2];
+  let initialData = [initialTrace1, initialTrace2, initialTrace3, initialTrace4];
 
   var initialLayout = {
-      title: 'United States Happiness vs. Illinois Alcohol Consumption',
+      title: 'United States Happiness vs. Alcohol Consumption',
       yaxis: {title: 'Happiness Index (10 pt scale)'},
       yaxis2: {
-        title: 'Alcohol G/person',
+        title: 'Alcohol L/person',
         titlefont: {color: 'rgb(0,0,0)',size:12},
         tickfont: {color: 'rgb(0,0,0)'},
         overlaying: 'y',
@@ -238,6 +279,8 @@ function init2(){
   function(eventdata){
   });
 }))
+)    
+)
 };
 
 init2();
