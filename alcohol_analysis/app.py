@@ -15,7 +15,7 @@ from flask import Flask, render_template, jsonify, request, redirect
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("postgresql://postgres:postgres@localhost:5432/alcohol_analysis")
+engine = create_engine("postgresql://USERNAME:PASSWORD@localhost:5432/alcohol_analysis")
 # inspector=inspect(engine)
 # test = inspector.get_table_names()
 # print(test)
